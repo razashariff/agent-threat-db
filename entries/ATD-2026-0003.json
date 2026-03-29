@@ -1,0 +1,35 @@
+{
+  "id": "ATD-2026-0003",
+  "summary": "SANDWORM_MODE npm worm injects malicious MCP servers into AI coding tools",
+  "details": "Self-replicating npm worm (evolution of Shai-Hulud) that steals npm/GitHub tokens, then publishes trojanised versions of every package the victim maintains. The SANDWORM_MODE phase (February 2026) added MCP server injection into AI coding tools including Claude Code, Cursor, VS Code Continue, and Windsurf. Injected MCP servers perform prompt injection to manipulate AI agents into exfiltrating credentials, harvesting LLM API keys, and SSH propagation to other systems.",
+  "modified": "2026-03-29T00:00:00Z",
+  "published": "2026-02-24T00:00:00Z",
+  "aliases": [],
+  "severity": [
+    { "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H" }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "npm",
+        "name": "multiple-packages"
+      },
+      "versions": ["796+ compromised packages"]
+    }
+  ],
+  "references": [
+    { "type": "ARTICLE", "url": "https://socket.dev/blog/sandworm-mode-npm-worm-ai-toolchain-poisoning" },
+    { "type": "ADVISORY", "url": "https://www.cisa.gov/news-events/alerts/2025/09/23/widespread-supply-chain-compromise-impacting-npm-ecosystem" }
+  ],
+  "agent_threat": {
+    "category": "supply_chain",
+    "agent_type": "mcp_server",
+    "attack_vector": "Worm injects malicious MCP server configs into AI coding tools, manipulates AI agents via prompt injection to exfiltrate credentials",
+    "mitigations": [
+      "Audit MCP server configurations regularly",
+      "Scan MCP servers with cybersecify before connecting",
+      "Use mcp-secure signTool() to pin tool definitions at registration",
+      "Verify tool definitions with verifyTool() before invocation"
+    ]
+  }
+}

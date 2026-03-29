@@ -1,0 +1,31 @@
+{
+  "id": "ATD-2026-0005",
+  "summary": "EchoLeak zero-click prompt injection exfiltrates data via Microsoft Copilot",
+  "details": "Zero-click prompt injection vulnerability where an attacker sends email with hidden instructions. Microsoft Copilot ingests the malicious prompt, the AI extracts sensitive data from OneDrive, SharePoint, and Teams, and data is exfiltrated via trusted Microsoft domains. No user interaction required. The agent is hijacked through content it processes as data, not through direct user input.",
+  "modified": "2026-03-29T00:00:00Z",
+  "published": "2026-01-15T00:00:00Z",
+  "severity": [
+    { "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N" }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "agent",
+        "name": "microsoft-copilot"
+      }
+    }
+  ],
+  "references": [
+    { "type": "ARTICLE", "url": "https://www.csoonline.com/article/4111384/top-5-real-world-ai-security-threats-revealed-in-2025.html" }
+  ],
+  "agent_threat": {
+    "category": "prompt_injection",
+    "agent_type": "autonomous_agent",
+    "attack_vector": "Hidden instructions embedded in email content processed by AI agent, causing data extraction from connected services",
+    "mitigations": [
+      "Enforce message signing to verify instruction provenance",
+      "Use mcp-secure to cryptographically bind tool invocations to verified user intent",
+      "Implement content isolation between untrusted input and agent execution context"
+    ]
+  }
+}

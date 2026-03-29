@@ -1,0 +1,32 @@
+{
+  "id": "ATD-2026-0004",
+  "summary": "OpenClaw marketplace skills exfiltrate data from 21,000 exposed instances",
+  "details": "Malicious actors uploaded skills to the OpenClaw marketplace (5,700+ community-built skills, 135,000 GitHub stars) that secretly exfiltrated sensitive data from users' local machines. Over 21,000 OpenClaw instances were exposed. The platform lacked skill signing, provenance verification, and sandboxing, allowing any uploaded skill to execute with full local system access.",
+  "modified": "2026-03-29T00:00:00Z",
+  "published": "2026-02-01T00:00:00Z",
+  "severity": [
+    { "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:L/A:N" }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "agent",
+        "name": "openclaw"
+      }
+    }
+  ],
+  "references": [
+    { "type": "ARTICLE", "url": "https://engineerscorner.in/meta-rogue-ai-agent-security-breach-2026/" }
+  ],
+  "agent_threat": {
+    "category": "data_exfiltration",
+    "agent_type": "agent_skill",
+    "attack_vector": "Malicious skills uploaded to marketplace execute with full local system access, exfiltrate files and credentials",
+    "mitigations": [
+      "Sign all agent skills with mcp-secure signTool()",
+      "Verify skill signatures before loading with verifyTool()",
+      "Sandbox skill execution with strict file system and network isolation",
+      "Scan skills with cybersecify before installation"
+    ]
+  }
+}
